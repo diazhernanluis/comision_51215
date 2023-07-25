@@ -5,7 +5,7 @@ config = {
 };
 
 config.db = {
-    cs: process.env.mongodb,
+    cs: process.env.mongodb || "mongodb+srv://coderhouse:coderhouse@ejercicios.t0qmdog.mongodb.net/codereats",
 }
 
 

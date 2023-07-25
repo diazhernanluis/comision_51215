@@ -4,7 +4,7 @@ import indexRouter from './routes/index.routes.js';
 import config from './config/config.js';
 import cors from 'cors';
 
-const PORT = config.server;
+const PORT = config.server || 8080;
 
 const app = new express();
 
