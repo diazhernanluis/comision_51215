@@ -1,0 +1,15 @@
+{
+  "name": "proyecto_yarn",
+  "version": "1.0.0",
+  "description": "proyecto en yarn",
+  "main": "index.js",
+  "author": "coderhouse",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon ."
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

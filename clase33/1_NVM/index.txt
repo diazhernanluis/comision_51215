@@ -1,0 +1,14 @@
+Para windows: https://github.com/coreybutler/nvm-windows/releases
+Para Linux:
+Para mac: brew install nvm
+
+
+NVM = NODE VERSION MANAGER
+
+* nvm list o nvm ls
+
+* nvm install .....
+
+* nvm use ....
+
+* nvm alias default ....
