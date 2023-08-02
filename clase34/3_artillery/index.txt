@@ -1,0 +1,5 @@
+Errores encontrados en el .yml, razon por la que no anduvo en clase:
+
+* en lugar de 'metrics-by-endpoint', escribi 'metric-by-endpoint', recuerden que este era el nombre del plugin a usar, por ende no lo esta encontrando.
+* escribi duartion en vez de duration
+* target: 'http://localhost:8080' !!!, no habia escrito http

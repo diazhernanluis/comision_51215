@@ -1,12 +1,12 @@
 config:
   plugins:
     metrics-by-endpoint: {}
-  target: 'localhost:8080'
+  target: 'http://localhost:8080'
   phases:
-    - duartion: 20
+    - duration: 20
       arrivalRate: 10
 scenarios:
-  - name: "Sessions flow ( registro + login)"
+  - name: "Sessions flow ( registro + login )"
     flow:
       - log: "Creamos las variables para el usuario de prueba"
       - get:
