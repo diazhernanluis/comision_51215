@@ -1,0 +1,39 @@
+config:
+  plugins:
+    metrics-by-endpoint: {}
+  target: 'localhost:8080'
+  phases:
+    - duartion: 20
+      arrivalRate: 10
+scenarios:
+  - name: "Sessions flow ( registro + login)"
+    flow:
+      - log: "Creamos las variables para el usuario de prueba"
+      - get:
+          url: '/api/test/user'
+          capture:
+            - json: "$.nombre"
+              as: 'nombre'
+            - json: "$.apellido"
+              as: 'apellido'
+            - json: "$.email"
+              as: 'email'
+            - json: "$.password"
+              as: 'password'
+      - log: "Registramos el usuario"
+      - post:
+          url: '/register'
+          json:
+            nombre: "{{nombre}}"
+            apellido: "{{apellido}}"
+            email: "{{email}}"
+            password: "{{password}}"
+      - think: 2
+      - log: "Logueamos el usuario"
+      - post:
+          url: "/login"
+          json:
+            nombre: "{{nombre}}"
+            apellido: "{{apellido}}"
+            email: "{{email}}"
+            password: "{{password}}"
