@@ -1,0 +1,20 @@
+version: "3.8"
+services:
+  usuarios:
+    build: .
+    ports:
+      - "8080:8080"
+    links:
+      - mongoberto
+  mongoberto:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=cosme
+      - MONGO_INITDB_ROOT_PASSWORD=fulanito
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:

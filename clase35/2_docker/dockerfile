@@ -1,0 +1,17 @@
+# Primero definimos la imagen base: En este caso node porque es una aplicacion de node
+FROM node
+
+# Creamos una carpeta interna (esto es dentro de docker) donde vamos a guardar nuestro proyecto
+WORKDIR /app
+
+# Copiamos los archivo con los parametros -orign / -destino ( osea, desde donde estoy a /app de docker)
+COPY . .
+
+# Corremos dentro de docker el comando npm install (como al principio instalo node, sabe que hace el npm install)
+RUN npm install
+
+# Exponemos un puerto dentro de docker para que nos escuche!
+EXPOSE 8080
+
+# Ejectuamos el programa, CMD nos permite escribir comandos dentro del contendor, por ende corremos un npm start clasico
+CMD ["npm", "start"]
