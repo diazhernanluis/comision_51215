@@ -1,0 +1,25 @@
+RECUERDEN BUILDEAR Y SUBIR A DOCKERHUB LA IMAGEN
+
+minikube status
+minikube update-context
+
+
+// ---- CON ESTE COMANDO SOLO CREAMOS EL SERVICIO, AUN FALTA ARRANCARLO (FUE COMO HABERLO COMPILADO)
+kubectl apply -f kubeusers.yml
+
+
+mikibube service list --> lista los servicios, vamos a ver uno con el nombre que nosotros le pusimos en el .yml
+minikube service _nombreDelServicio_
+
+
+
+kubectl get pods
+kubectl get services
+kubectl get deployments
+
+// PARA MOSRTAR EL LOGUEO DE UN pod
+kubectl describe pod __idDelPod__
+
+kubectl delete pods --all
+kubectl delete service __nombreDelServicio__
+kubectl delete deployment __nombreDelDeploy__     (si eliminamos primero el deployment, nos elimina los pods que se crearon con ese deployment)
