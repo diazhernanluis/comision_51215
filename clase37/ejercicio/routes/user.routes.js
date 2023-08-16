@@ -7,7 +7,7 @@ import { getAllUsers,
          recoverPassword,
          resetPassword } from '../controllers/userController.js';
 
-import { isUserOrTokenValid } from '../middlewares/user.middlewares.js';
+import { isUserOrTokenValid, checkRol, isAdmin } from '../middlewares/user.middlewares.js';
 
 const userRouter = express.Router();
 
@@ -19,9 +19,9 @@ userRouter.get('/recoverPassword', recoverPassword);
 
 userRouter.get('/:id', getUserById);
 
-userRouter.post('/', insertUser);
+userRouter.post('/', checkRol, insertUser);
 userRouter.post('/resetPassword', isUserOrTokenValid ,resetPassword);
 
-userRouter.put('/', updateUser);
+userRouter.put('/', isAdmin, checkRol, updateUser);
 
 export default userRouter

@@ -16,6 +16,31 @@ const isUserOrTokenValid = (req, res, next) => {
     return res.status(401).send("No autorizado!");
 }
 
+const checkRol = (req, res, next) => {
+    const roles = ['user', 'admin', 'ceo', 'pepito'];
+    const rolUser = req.body.rol.tolowercase();
+
+    const isRolValid = roles.includes( el => rolUser === el);
+
+    if(isRolValid) {
+        next();
+    } else {
+        req.body.rol = 'user';
+        next();
+    }
+}
+
+const isAdmin = (req, res, next) => {
+    const isAdmin = req.user.rol;
+    if(!isAdmin) {
+        return res.status(401).send("Not authorized!");
+    }
+
+    next();
+}
+
 export {
-    isUserOrTokenValid
+    isUserOrTokenValid,
+    checkRol,
+    isAdmin
 }
