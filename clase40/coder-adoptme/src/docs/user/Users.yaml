@@ -1,0 +1,111 @@
+paths:
+  /api/users/:
+    get:
+      summary: Obtiene los datos del usuario
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Los usuarios fueron obtenidos sactifactoriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/User'
+        "400":
+          description: "No autorizado - probablemente token no valido"
+        "500":
+          description: "Error interno del servidor"
+  /api/users/{uid}:
+    get:
+      summary: Obtiene un usuario a partir de su ID
+      tags:
+        -  Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Id del usuario que desea solicitar
+      responses:
+          "200":
+            description: Usuario encontrado
+            content:
+              application/json:
+                schema:
+                  type: array
+          "500":
+            description: Error interno del servidor
+    put:
+      summary: Actualiza un usuario a partir de su Id
+      tags:
+        - Users
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          description: Id del usuario a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#components/requestBodies/updateUser'
+      responses:
+        "200":
+          description: Usuario actualizado
+        "500":
+          descriptin: Error interno del servidor
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de mongo
+        first_name:
+          type: String
+          description: Nombre del usuario
+        last_name:
+          type: String
+          description:  Apellido del usuario
+        email:
+          type: String
+          description: Mail del usuario
+        password:
+          type: String
+          description: Password del usuario, este campo esta hasheado
+        pets:
+          type: Array
+          description: Array de objectIds correspondientes a la collection pets
+      example:
+        _id: ObjectId("507f1f77bcf86cd799439011")
+        first_name: Cosme
+        last_name: Fulanito
+        email: cosmefulanito@gmail.com
+        password: sarasacosme123
+        pets: [ObjectId("507f1f77bcf86cd799439011"),
+               ObjectId("507f191e810c19729de860ea")]
+  requestBodies:
+    updateUser:
+      type: object
+      properties:
+        first_name:
+          type: String
+          description: Nombre del usuario
+        last_name:
+          type: String
+          descirption: Apellido del usuario
+        email:
+          type: String
+          description: email del usuario
+        password:
+          type: String
+          description: password del usuario
+      example:
+        first_name: OtroCosme
+        last_name: NuevoFulanito
+        email: cosmefulanito@gmail.com
+        password: sarasacosme123
