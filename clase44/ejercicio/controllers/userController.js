@@ -29,6 +29,7 @@ const getUserById = async (req, res) => {
 }
 
 const insertUser = async (req, res) => {
+
     try {
         const result = await userServices.create(req.body);
         res.status(200).send(result);
@@ -39,7 +40,7 @@ const insertUser = async (req, res) => {
 }
 
 const updateUser = async (req, res) => {
-    const { id } = req.params;
+    const { id } = req.query;
     if(!id) {
         return res.status(400).send("Id es mandatorio");
     }

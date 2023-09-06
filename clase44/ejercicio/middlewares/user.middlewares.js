@@ -17,10 +17,11 @@ const isUserOrTokenValid = (req, res, next) => {
 }
 
 const checkRol = (req, res, next) => {
-    const roles = ['user', 'admin', 'ceo', 'pepito'];
-    const rolUser = req.body.rol.tolowercase();
 
-    const isRolValid = roles.includes( el => rolUser === el);
+    const roles = ['user', 'admin', 'ceo', 'pepito'];
+    const rolUser = req.body.rol?.toLowerCase();
+
+    const isRolValid = roles.includes(rolUser);
 
     if(isRolValid) {
         next();

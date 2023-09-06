@@ -22,6 +22,7 @@ userRouter.get('/:id', getUserById);
 userRouter.post('/', checkRol, insertUser);
 userRouter.post('/resetPassword', isUserOrTokenValid ,resetPassword);
 
-userRouter.put('/', isAdmin, checkRol, updateUser);
+// userRouter.put('/', isAdmin, checkRol, updateUser);
+userRouter.put('/', updateUser);
 
 export default userRouter
