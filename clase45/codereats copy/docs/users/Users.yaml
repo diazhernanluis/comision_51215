@@ -1,0 +1,116 @@
+paths:
+  /v1/api/user/:
+    get:
+      summary: Obtiene todos los usuarios
+      tags:
+        - Users
+      responses:
+        "200":
+          descritpion: Los usuarios fueron obtenidos sactifactoriamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/User'
+        "500":
+          description: Error interno del servidor
+    put:
+      summary: Obtiene todos los usuarios
+      tags:
+        - Users
+      parameters:
+      - name: uid
+        in: query
+        required: true
+        descirption: Id del usuario que se desea actualizar
+        schema: 
+          $type: String
+        requestBody:
+          required: true
+          content:
+            applicaton/json:
+              schema:
+                $ref: '#components/requestBodies/updateUser'
+        responses:
+          "200":
+            descritpion: User updated
+          "500":
+            descritpion: Error interno
+
+  /v1/api/user/{uid}:
+    get:
+      summary: Obtiene un solo usuario a partir de su Id
+      tags:
+        - Users
+      parameters:
+      - name: uid
+        in: path
+        required: true
+        description: Id del usuario que se desea solicitar
+        schema:
+          $type: String
+      responses:
+        "200":
+          description: Usuario encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/User'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: Id autogenerado de mongo
+        nombre:
+          type: string
+          description: Nombre del usuarios
+        correo:
+          type: string
+          description: Correo del usuario
+        rol:
+          type: string
+          description: Rol del usuario
+        password:
+          type: string
+          description: password del usuario
+        orders:
+          type: array
+          description: historial de ordenes del usuario
+      example:
+        _id: ObjectId("507f1f77bcf86cd799439011")
+        nombre: swaggerName
+        correo: swaggerMail
+        rol: usuario
+        password: $34gjikewr923$"·$=FDSFK"
+        orders: []
+  requestBodies:
+    updateUser:
+      type: object
+      properties:
+        nombre:
+          type: string
+          description: Nombre del usuarios
+        correo:
+          type: string
+          description: Correo del usuario
+        rol:
+          type: string
+          description: Rol del usuario
+        password:
+          type: string
+          description: password del usuario
+        orders:
+          type: array
+          description: historial de ordenes del usuario
+      example:
+        _id: ObjectId("507f1f77bcf86cd799439011")
+        nombre: swaggerNameUpdate
+        correo: swaggerMailUpdate
+        rol: usuarioUpdate
+        password: $34gjikewr923$"·$=FDSFK"
+        orders: []
